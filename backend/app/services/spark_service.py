@@ -17,6 +17,17 @@ def create_spark_session():
     Creates and returns a singleton SparkSession configured for local execution.
     """
     global _spark_session
+    if _spark_session is not None:
+        try:
+            # Check if SparkSession is still connected to a live JVM
+            _ = _spark_session.version
+        except Exception:
+            try:
+                _spark_session.stop()
+            except Exception:
+                pass
+            _spark_session = None
+
     if _spark_session is None:
         _spark_session = SparkSession.builder \
             .appName("InventoryIQ") \
