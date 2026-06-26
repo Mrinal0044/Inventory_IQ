@@ -1,0 +1,37 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Virtual Environments
+backend/venv/
+venv/
+.venv/
+env/
+ENV/
+
+# Node Dependencies
+frontend/node_modules/
+node_modules/
+
+# Python Cache
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.pytest_cache/
+
+# Local Environment Configs
+.env
+.env.local
+.env.*.local
+
+# Build Outputs
+frontend/dist/
+dist/
+
+# Spark Files & Databases
+spark-warehouse/
+derby.log
+metastore_db/
+backend/uploads/*
+!backend/uploads/.gitkeep

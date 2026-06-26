@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Light Mode Design System */
+  --text-primary: #1e1b4b;     /* Slate 950 */
+  --text-secondary: #4f46e5;   /* Indigo 600 */
+  --text-muted: #64748b;       /* Slate 500 */
+  
+  --bg-gradient: radial-gradient(at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 60%), #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --border-glass: rgba(0, 0, 0, 0.06);
+  --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  
+  --accent-primary: #6366f1;   /* Indigo 500 */
+  --accent-secondary: #a855f7; /* Violet 500 */
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --accent-bg: rgba(99, 102, 241, 0.08);
+  --accent-border: rgba(99, 102, 241, 0.25);
+  
+  --status-safe: #10b981;
+  --status-safe-bg: rgba(16, 185, 129, 0.08);
+  --status-safe-border: rgba(16, 185, 129, 0.2);
+  
+  --status-warn: #f59e0b;
+  --status-warn-bg: rgba(245, 158, 11, 0.08);
+  --status-warn-border: rgba(245, 158, 11, 0.2);
+  
+  --status-crit: #f43f5e;
+  --status-crit-bg: rgba(244, 63, 94, 0.08);
+  --status-crit-border: rgba(244, 63, 94, 0.2);
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  font-family: var(--font-sans);
+  color-scheme: light dark;
+  color: var(--text-muted);
+  background: var(--bg-gradient);
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Design System */
+    --text-primary: #f8fafc;     /* Slate 50 */
+    --text-secondary: #a5b4fc;   /* Indigo 300 */
+    --text-muted: #94a3b8;       /* Slate 400 */
+    
+    --bg-gradient: radial-gradient(at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 55%), #090d16;
+    --bg-card: rgba(15, 23, 42, 0.65);
+    --border-glass: rgba(255, 255, 255, 0.05);
+    --shadow-premium: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(255, 255, 255, 0.01);
+    
+    --accent-primary: #818cf8;   /* Indigo 400 */
+    --accent-secondary: #c084fc; /* Violet 400 */
+    --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+    --accent-bg: rgba(129, 140, 248, 0.12);
+    --accent-border: rgba(129, 140, 248, 0.3);
+    
+    --status-safe: #34d399;
+    --status-safe-bg: rgba(52, 211, 153, 0.1);
+    --status-safe-border: rgba(52, 211, 153, 0.25);
+    
+    --status-warn: #fbbf24;
+    --status-warn-bg: rgba(251, 191, 36, 0.1);
+    --status-warn-border: rgba(251, 191, 36, 0.25);
+    
+    --status-crit: #f87171;
+    --status-crit-bg: rgba(248, 113, 113, 0.1);
+    --status-crit-border: rgba(248, 113, 113, 0.25);
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  font-weight: 700;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.75rem;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Beautiful custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-glass);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-border);
+}
+
+/* Glass panel utility */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  box-shadow: var(--shadow-premium);
+}
+
+/* Code block styles */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--accent-bg);
+  color: var(--accent-primary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+}
