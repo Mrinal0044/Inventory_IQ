@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from fastapi import APIRouter
 import pandas as pd
 import os
@@ -19,6 +20,23 @@ def forecast(data: dict = None):
         data = {}
 
     path = data.get("file_path")
+    if path and not os.path.exists(path):
+        from app.services.mongodb_service import get_analysis_by_file_path
+        saved = get_analysis_by_file_path(path)
+        if saved:
+            forecast_results = saved["forecast_results"]
+            products = sorted(list(forecast_results.keys()))
+            
+            selected_product = data.get("product")
+            if not selected_product or selected_product not in products:
+                selected_product = products[0] if products else ""
+                
+            return {
+                "product": selected_product,
+                "products": products,
+                "next_7_day_forecast": forecast_results.get(selected_product, [])
+            }
+
     if not path or not os.path.exists(path):
         path = DEFAULT_DATASET
 

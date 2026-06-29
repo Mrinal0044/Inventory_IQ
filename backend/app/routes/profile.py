@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from fastapi import APIRouter
 import pandas as pd
 import os
@@ -19,6 +20,12 @@ def profile(data: dict = None):
         data = {}
 
     path = data.get("file_path")
+    if path and not os.path.exists(path):
+        from app.services.mongodb_service import get_analysis_by_file_path
+        saved = get_analysis_by_file_path(path)
+        if saved:
+            return saved["dataset_summary"]
+
     if not path or not os.path.exists(path):
         path = DEFAULT_DATASET
 
