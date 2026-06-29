@@ -15,11 +15,8 @@ app = FastAPI(title="InventoryIQ")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://inventory-iq-ten.vercel.app",
-        "https://inventory-gf8ppfdet-mrinal5.vercel.app",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
