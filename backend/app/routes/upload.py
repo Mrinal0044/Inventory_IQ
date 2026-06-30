@@ -151,7 +151,19 @@ async def upload(file: UploadFile = File(...)):
             health_score=health_score,
             business_insights=insights
         )
-
+    except Exception as e:
+        import traceback
+        from fastapi.responses import JSONResponse
+        error_details = traceback.format_exc()
+        print("Upload processing failed:")
+        print(error_details)
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": str(e),
+                "traceback": error_details
+            }
+        )
     finally:
         # Delete temporary file
         if os.path.exists(path):
